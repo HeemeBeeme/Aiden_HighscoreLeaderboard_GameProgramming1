@@ -25,10 +25,10 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
             Thread.Sleep(1000);
         }
 
-        static void UserInitialInput()
+        static void UserInitialInput(int cursorY)
         {
             Console.WriteLine("Please Input 3 Initials: ");
-            Console.SetCursorPosition(25, 2);
+            Console.SetCursorPosition(25, cursorY);
 
             UserInput = Console.ReadLine();
             UserInput = UserInput.ToUpper();
@@ -37,7 +37,8 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
             {
                 Console.Clear();
                 DisplayScore();
-                UserInitialInput();
+                Console.WriteLine("Input Invalid!\n");
+                UserInitialInput(4);
             }
             else
             {
@@ -68,7 +69,7 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
             score = scoreGeneratorRnD.Next(1, 1001);
 
             DisplayScore();
-            UserInitialInput();
+            UserInitialInput(2);
             DisplayHighscores();
 
             Console.ReadKey();
