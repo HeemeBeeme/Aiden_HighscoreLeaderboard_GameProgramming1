@@ -41,27 +41,25 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
             }
             else
             {
-                File.AppendAllText(path, $",{UserInput},{score}");
+                File.AppendAllText(path, $"{score}: {UserInput},");
             }
         }
 
         static void DisplayHighscores()
         {
+            Console.Clear();
+
             string ScoresFromFile = File.ReadAllText(path);
             scoreDisplayList = ScoresFromFile.Split(',');
+            Array.Sort(scoreDisplayList);
 
-            Console.WriteLine("\nHighscores:");
+            Console.WriteLine("Highscores:\n");
 
             for(int i = 1; i < scoreDisplayList.Length; i++)
             {
-                if (!int.TryParse(scoreDisplayList[i], out int result))
-                {
-                    Console.Write($"{scoreDisplayList[i]}: ");
-                }
-                else
-                {
-                    Console.WriteLine($"{scoreDisplayList[i]}");
-                }
+
+                Console.WriteLine($"{scoreDisplayList[i]}");
+
             }
         }
 
