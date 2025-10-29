@@ -31,29 +31,37 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
             Console.SetCursorPosition(25, 2);
 
             UserInput = Console.ReadLine();
+            UserInput = UserInput.ToUpper();
 
-            if (UserInput.Length != 3)
+            if (UserInput.Length != 3 || UserInput.Any(Char.IsDigit))
             {
                 Console.Clear();
                 DisplayScore();
                 UserInitialInput();
             }
-
-            File.AppendAllText(path, $"{UserInput},{score} ");
+            else
+            {
+                File.AppendAllText(path, $",{UserInput},{score}");
+            }
         }
 
         static void DisplayHighscores()
         {
-            Console.Clear();
-
-
             string ScoresFromFile = File.ReadAllText(path);
-
             scoreDisplayList = ScoresFromFile.Split(',');
 
-            for(int i = 0; i < scoreDisplayList.Length; i ++)
+            Console.WriteLine("\nHighscores:");
+
+            for(int i = 1; i < scoreDisplayList.Length; i++)
             {
-                Console.WriteLine(scoreDisplayList[i]);
+                if (!int.TryParse(scoreDisplayList[i], out int result))
+                {
+                    Console.Write($"{scoreDisplayList[i]}: ");
+                }
+                else
+                {
+                    Console.WriteLine($"{scoreDisplayList[i]}");
+                }
             }
         }
 
