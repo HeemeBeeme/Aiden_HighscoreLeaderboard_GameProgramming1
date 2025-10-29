@@ -27,6 +27,7 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
 
         static void UserInitialInput(int cursorY)
         {
+            Console.CursorVisible = true;
             Console.WriteLine("Please Input 3 Initials: ");
             Console.SetCursorPosition(25, cursorY);
 
@@ -67,12 +68,18 @@ namespace Aiden_HighscoreLeaderboard_GameProgramming1
         static void Main(string[] args)
         {
             score = scoreGeneratorRnD.Next(1, 1001);
+            Console.CursorVisible = false;
 
             DisplayScore();
             UserInitialInput(2);
+
+            Console.CursorVisible = false;
+
             DisplayHighscores();
 
+            Console.WriteLine("\nPress any key to end the game...");
             Console.ReadKey();
+            Environment.Exit(0);
         }
     }
 }
